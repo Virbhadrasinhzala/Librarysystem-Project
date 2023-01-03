@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Welcome</title>
+</head>
+
+<body>
+<!-- Navbar Start -->
+    <nav class="nav">
+        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+        <a class="nav-link" href="#">View Bool</a>
+        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="#">Contact</a>
+        <div>
+            {% if user is none %}
+            <button type="button" class="btn btn-outline-primary mx-2" data-bs-toggle="modal"
+                data-bs-target="#loginModal">SignIn</button>
+            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                data-bs-target="#signupModal">SignUp</button>
+        </div>
+        {% else %}
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{user}}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/user_logout">Logout</a></li>
+            </ul>
+        </div>
+        {% endif %}
+        <!-- <a href="/user_logout" class="btn btn-danger"  type="submit">Logout</a> -->
+    </nav>
+<!-- Navbar End -->
+
+
+<!-- Book Form Start -->
+<div class="container my-4">
+    <form method="post">
+        {% csrf_token %}
+        <label>Name :- </label>
+        <input type="text" placeholder="Name" name="s_name" required><br><br>
+        <label>Book Name:- </label>
+        <input type="text" placeholder="Book Name" name="book_name" required><br><br>
+        <label>Contact:- </label>
+        <input type="number" placeholder="Contact" name="contact" required><br><br>
+        <label>Issue Date :- </label>
+        <input type="date" placeholder="Issue Date" name="issue_date" required><br><br>
+        <label>Return Date :- </label>
+        <input type="date" placeholder="Return Date" name="submit_date" required><br><br>
+        
+        <button type="submit" class="btn btn-success">Get Book</button>
+    </form>        
+</div>
+<!-- Book Form End -->
+</body>
+</html>

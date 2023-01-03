@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Welcome</title>
+</head>
+
+<body>
+<!-- Navbar Start -->
+    <nav class="nav">
+        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+        <a class="nav-link" href="/update_profile">Edit Profile</a>
+        <a class="nav-link" href="/about">About</a>
+        <a class="nav-link" href="/contactus">Contact Us</a>
+        <div>
+            {% if user is none %}
+            <button type="button" class="btn btn-outline-primary mx-2" data-bs-toggle="modal"
+                data-bs-target="#loginModal">SignIn</button>
+            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                data-bs-target="#signupModal">SignUp</button>
+        </div>
+        {% else %}
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{user}}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/user_logout">Logout</a></li>
+            </ul>
+        </div>
+        {% endif %}
+        <!-- <a href="/user_logout" class="btn btn-danger"  type="submit">Logout</a> -->
+    </nav>
+<!-- Navbar End -->
+
+<!-- Login Model Start -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div><br>
+        <form method="post">
+          {% csrf_token %}
+          <div class="container">
+            <label>Username :- </label>
+            <input type="text" placeholder="User Name" name="email" required><br><br>
+            <label>Password :- </label>
+            <input type="password" placeholder="Password" name="pasword" required><br><br>
+            <button type="submit" class="btn btn-success" name="login" value="login">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<!-- Login Model End -->
+
+<!-- Signup Model Start -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">SignUp</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form method="post">
+              {% csrf_token %}
+              <label>First Name :- </label>
+              <input type="text" placeholder="Name" name="name" required><br><br>
+              <label>Address :- </label>
+              <input type="text" placeholder="Address" name="adrs" required><br><br>
+              <label>City :- </label>
+              <input type="text" placeholder="City" name="city" required><br><br>
+              <label>Contact :- </label>
+              <input type="number" placeholder="Contact" name="contact" required><br><br>
+              <label>Email :- </label>
+              <input type="email" placeholder="@ Email" name="email" required><br><br>
+              <label>Pasword :- </label>
+              <input type="password" placeholder="Password" name="pasword" required><br><br>
+              <button type="submit" class="btn btn-success" name="signup" value="signup">SignUp</button>
+            </form>
+          </div>
+        </div>
+      </div>    
+    </div>      
+  </div>
+<!-- Signup Model End -->
+
+<!-- Gallery Start -->
+<div class="container my-4">
+    <div class="row g-5">
+        <div class="col-xl-4 col-lg-6">
+            <div class="card" style="width: 18rem;">
+                <img src="/static/img/book5.jpg" class="card-img-top">
+                <div class="card-body">
+                  <a href="/getbook" class="btn btn-primary">Get Book</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+            <div class="card" style="width: 18rem;">
+                <img src="/static/img/book6.jpg" class="card-img-top">
+                <div class="card-body">
+                  <a href="/getbook" class="btn btn-primary">Get Book</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+            <div class="card" style="width: 18rem;">
+                <img src="/static/img/book7.webp" class="card-img-top">
+                <div class="card-body">
+                  <a href="/getbook" class="btn btn-primary">Get Book</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+            <div class="card" style="width: 18rem;">
+                <img src="/static/img/book8.jpg" class="card-img-top">
+                <div class="card-body">
+                  <a href="/getbook" class="btn btn-primary">Get Book</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+            <div class="card" style="width: 18rem;">
+                <img src="/static/img/book9.webp" class="card-img-top">
+                <div class="card-body">
+                  <a href="/getbook" class="btn btn-primary">Get Book</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+            <div class="card" style="width: 18rem;">
+                <img src="/static/img/book10.webp" class="card-img-top">
+                <div class="card-body">
+                  <a href="/getbook" class="btn btn-primary">Get Book</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Gallery End -->
+</body>
+</html>
